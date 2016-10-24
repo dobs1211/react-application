@@ -12,4 +12,4 @@ document.addEventListener('DOMContentLoaded', function() {
         </Provider>,
         document.getElementById('app')
     );
-});  
+});
