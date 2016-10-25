@@ -46,6 +46,7 @@
 
 	'use strict';
 	
+	/*index.js*/
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(34);
 	var Provider = __webpack_require__(172).Provider;
@@ -23174,6 +23175,7 @@
 
 	'use strict';
 	
+	/*store.js*/
 	var redux = __webpack_require__(179);
 	var createStore = redux.createStore;
 	var applyMiddleware = redux.applyMiddleware;
@@ -23218,6 +23220,7 @@
 
 	'use strict';
 	
+	/*reducers.js*/
 	var actions = __webpack_require__(203);
 	
 	var initialRepositoryState = [];
@@ -23284,6 +23287,7 @@
 
 	'use strict';
 	
+	/*actions.js*/
 	__webpack_require__(204);
 	
 	var ADD_REPOSITORY = 'ADD_REPOSITORY';
@@ -23811,6 +23815,7 @@
 
 	'use strict';
 	
+	/*repository-list.js*/
 	var React = __webpack_require__(1);
 	var connect = __webpack_require__(172).connect;
 	
@@ -23862,6 +23867,7 @@
 
 	'use strict';
 	
+	/*repository.js*/
 	var React = __webpack_require__(1);
 	var connect = __webpack_require__(172).connect;
 	
@@ -23891,11 +23897,11 @@
 	    }
 	});
 	
+	module.exports = Repository;
+	
 	var Container = connect()(Repository);
 	
 	module.exports = Container;
-	
-	module.exports = Repository;
 
 /***/ },
 /* 208 */
@@ -23903,6 +23909,7 @@
 
 	'use strict';
 	
+	/*star-rater.js*/
 	var React = __webpack_require__(1);
 	
 	var StarRater = React.createClass({
