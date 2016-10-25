@@ -1,3 +1,4 @@
+/*reducers.js*/
 var actions = require('./actions');
 
 var initialRepositoryState = [];

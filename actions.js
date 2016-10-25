@@ -1,3 +1,4 @@
+/*actions.js*/
 require('isomorphic-fetch');
 
 

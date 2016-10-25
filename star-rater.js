@@ -1,3 +1,4 @@
+/*star-rater.js*/
 var React = require('react');
 
 var StarRater = React.createClass({

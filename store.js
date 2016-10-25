@@ -1,3 +1,4 @@
+/*store.js*/
 var redux = require('redux');
 var createStore = redux.createStore;
 var applyMiddleware = redux.applyMiddleware;
