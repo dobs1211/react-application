@@ -1,16 +1,19 @@
-/*repository-list.js*/
 var React = require('react');
 var connect = require('react-redux').connect;
 
 var Repository = require('./repository');
+
 var actions = require('./actions');
 
 var RepositoryList = React.createClass({
     addRepository: function() {
         var repositoryName = this.refs.repositoryName.value;
-        this.props.dispatch(actions.addRepository(repositoryName));
+        // TODO: Add the repository to the state
+        console.log(this.props);
+        this.props.dispatch(
+            actions.addRepository(repositoryName)
+        );
     },
-
     render: function() {
         var repositories = this.props.repositories.map(function(repository) {
             return <Repository repository={repository} key={repository.name} />;
@@ -28,8 +31,6 @@ var RepositoryList = React.createClass({
     }
 });
 
-module.exports = RepositoryList;
-
 var mapStateToProps = function(state, props) {
     return {
         repositories: state
@@ -39,4 +40,3 @@ var mapStateToProps = function(state, props) {
 var Container = connect(mapStateToProps)(RepositoryList);
 
 module.exports = Container;
-

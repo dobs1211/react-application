@@ -23,6 +23,7 @@ var fetchDescription = function(repository) {
     return function(dispatch) {
         var url = 'https://api.github.com/repos/' + repository;
         return fetch(url).then(function(response) {
+           // fetch.fetchUrl(url [, options], callback)
             if (response.status < 200 || response.status >= 300) {
                 var error = new Error(response.statusText)
                 error.response = response

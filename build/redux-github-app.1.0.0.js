@@ -23220,7 +23220,6 @@
 
 	'use strict';
 	
-	/*reducers.js*/
 	var actions = __webpack_require__(203);
 	
 	var initialRepositoryState = [];
@@ -23232,6 +23231,25 @@
 	            name: action.repository,
 	            rating: null
 	        });
+	    } else if (action.type === actions.RATE_REPOSITORY) {
+	        // Find the index of the matching repository
+	        var index = -1;
+	        for (var i = 0; i < state.length; i++) {
+	            var repository = state[i];
+	            if (repository.name === action.repository) {
+	                index = i;
+	                break;
+	            }
+	        }
+	
+	        if (index === -1) {
+	            throw new Error('Could not find repository');
+	        }
+	
+	        var before = state.slice(0, i);
+	        var after = state.slice(i + 1);
+	        var newRepository = Object.assign({}, repository, { rating: action.rating });
+	        return before.concat(newRepository, after);
 	    } else if (action.type === actions.FETCH_DESCRIPTION_SUCCESS) {
 	        // Find the index of the matching repository
 	        var index = -1;
@@ -23250,7 +23268,7 @@
 	        var before = state.slice(0, i);
 	        var after = state.slice(i + 1);
 	        var newRepository = Object.assign({}, repository, {
-	            description: action.description
+	            description: action.description || 'N/A'
 	        });
 	        return before.concat(newRepository, after);
 	    } else if (action.type === actions.FETCH_DESCRIPTION_ERROR) {
@@ -23311,6 +23329,7 @@
 	    return function (dispatch) {
 	        var url = 'https://api.github.com/repos/' + repository;
 	        return fetch(url).then(function (response) {
+	            // fetch.fetchUrl(url [, options], callback)
 	            if (response.status < 200 || response.status >= 300) {
 	                var error = new Error(response.statusText);
 	                error.response = response;
@@ -23815,11 +23834,11 @@
 
 	'use strict';
 	
-	/*repository-list.js*/
 	var React = __webpack_require__(1);
 	var connect = __webpack_require__(172).connect;
 	
 	var Repository = __webpack_require__(207);
+	
 	var actions = __webpack_require__(203);
 	
 	var RepositoryList = React.createClass({
@@ -23827,9 +23846,10 @@
 	
 	    addRepository: function addRepository() {
 	        var repositoryName = this.refs.repositoryName.value;
+	        // TODO: Add the repository to the state
+	        console.log(this.props);
 	        this.props.dispatch(actions.addRepository(repositoryName));
 	    },
-	
 	    render: function render() {
 	        var repositories = this.props.repositories.map(function (repository) {
 	            return React.createElement(Repository, { repository: repository, key: repository.name });
@@ -23848,8 +23868,6 @@
 	        );
 	    }
 	});
-	
-	module.exports = RepositoryList;
 	
 	var mapStateToProps = function mapStateToProps(state, props) {
 	    return {
@@ -23881,9 +23899,11 @@
 	        this.props.dispatch(actions.fetchDescription(this.props.repository.name));
 	    },
 	    changeRating: function changeRating(rating) {
+	        console.log(this.props);
 	        this.props.dispatch(actions.rateRepository(this.props.repository.name, rating));
 	    },
 	    render: function render() {
+	        console.log(this.props);
 	        return React.createElement(
 	            'div',
 	            { className: 'repository' },
